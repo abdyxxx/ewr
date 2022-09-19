@@ -52,7 +52,7 @@ export default function SearchCity() {
     }, [])
     return (
         <div className='search'>
-            <p className='search__text'>Узнайте погоду в своем городе</p> 
+            <p className='search__text'>Узнайте погоду в своем городе (English)</p> 
             <input onChange={handleInput} value={inputValue} className='search__input'>
 
             </input>
