@@ -1,0 +1,79 @@
+@font-face {
+  font-family: "Golos-light";
+  src: url("./fonts/Golos-UI_VF.ttf");
+}
+@font-face {
+  font-family: "Golos-Regular";
+  src: url("./fonts/Golos-UI_Regular.ttf");
+}
+@font-face {
+  font-family: "Golos-Medium";
+  src: url("./fonts/Golos-UI_Medium.ttf");
+}
+@font-face {
+  font-family: "Golos-Bold";
+  src: url("./fonts/Golos-UI_Bold.ttf");
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.modale {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  background-color: rgba(0, 0, 0, 0.5921568627);
+  height: 100vh;
+}
+
+.modale__form {
+  color: #003d9f;
+  display: flex;
+  flex-direction: column;
+  background-color: #b9e0ff;
+  min-width: 400px;
+  padding: 35px;
+  border-radius: 25px;
+}
+.modale__form p {
+  margin: 20px 0 5px;
+  font-family: "Golos-Medium";
+}
+.modale__form h1 {
+  font-family: "Golos-Medium";
+  text-align: center;
+}
+.modale__form span {
+  font-family: "Golos-Regular";
+}
+
+.modale__input {
+  padding: 10px;
+  border-radius: 15px;
+  font-family: "Golos-Medium";
+  font-size: 20px;
+}
+
+.modale__submit {
+  cursor: pointer;
+  font-family: "Golos-Medium";
+  color: #fff;
+  font-size: 1.15em;
+  margin-top: 25px;
+  padding: 10px;
+  background-color: #003d9f;
+  border: 3px solid #003d9f;
+  border-radius: 15px;
+  transition: 0.2s;
+}
+.modale__submit:hover {
+  background-color: #fff;
+  color: #003d9f;
+}
+
+.err {
+  color: red;
+}/*# sourceMappingURL=Modale.css.map */

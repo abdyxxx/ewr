@@ -1,0 +1,63 @@
+@font-face 
+    font-family: 'Golos-light'
+    src: url('./fonts/Golos-UI_VF.ttf')
+@font-face 
+    font-family: 'Golos-Regular'
+    src: url('./fonts/Golos-UI_Regular.ttf')
+@font-face 
+    font-family: 'Golos-Medium'
+    src: url('./fonts/Golos-UI_Medium.ttf')
+@font-face 
+    font-family: 'Golos-Bold'
+    src: url('./fonts/Golos-UI_Bold.ttf')
+$back_color: #b9e0ff
+$primary_color: #003d9f
+
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+.modale
+    display: flex
+    justify-content: center
+    align-items: center
+    padding: 30px
+    background-color:#00000097
+    height: 100vh
+.modale__form
+    color: $primary_color
+    display: flex
+    flex-direction: column
+    background-color: $back_color
+    min-width: 400px
+    padding: 35px
+    border-radius: 25px 
+    p
+        margin: 20px 0 5px
+        font-family: 'Golos-Medium'
+    h1
+        font-family: 'Golos-Medium'
+        text-align: center
+    span
+        font-family: 'Golos-Regular'
+.modale__input
+    padding: 10px
+    border-radius: 15px 
+    font-family: 'Golos-Medium'
+    font-size: 20px
+.modale__submit
+    cursor: pointer  
+    font-family: 'Golos-Medium'
+    color: #fff
+    font-size: 1.15em
+    margin-top: 25px
+    padding: 10px
+    background-color: $primary_color
+    border: 3px solid $primary_color
+    border-radius: 15px
+    transition: .2s
+    &:hover
+        background-color: #fff
+        color: $primary_color
+.err
+    color: red

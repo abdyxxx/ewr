@@ -1,0 +1,28 @@
+@font-face{ 
+    font-family: 'Golos-light';
+    src: url('./fonts/Golos-UI_VF.ttf');
+  }
+  
+@font-face {
+    font-family: 'Golos-Regular';
+    src: url('./fonts/Golos-UI_Regular.ttf');
+  }
+@font-face {
+    font-family: 'Golos-Medium';
+    src: url('./fonts/Golos-UI_Medium.ttf');
+  }
+@font-face {
+    font-family: 'Golos-Bold';
+    src: url('./fonts/Golos-UI_Bold.ttf');
+  }
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
