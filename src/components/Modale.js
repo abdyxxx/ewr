@@ -1,8 +1,6 @@
 import React from 'react';
 import './styles/Modale.css';
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { setUserData } from '../redux/actions';
+import { useState } from 'react';
 import Registration from './Registration';
 import Authorization from './Authorization';
 
@@ -18,7 +16,6 @@ export default function Modale({setIsAuth}){
         password: '',
         passwordControl: ''
     });
-
     let [showRegistration, setShowRegistration] = useState(localStorage.length < 1)
     
     let handleField = (e) =>{

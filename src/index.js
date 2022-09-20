@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createStore} from 'redux';
 import { rootReducer } from './redux/reducers/rootReducer';
 import { Provider } from 'react-redux';
 

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { Component, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { setItem, replaceItem, selectCity } from '../redux/actions';
 

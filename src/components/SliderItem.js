@@ -1,8 +1,7 @@
 import axios from "axios";
 import React, { Component } from 'react';
-import { useEffect, useState, useLayoutEffect } from "react";
 import { connect } from "react-redux";
-import { addData, selectCity } from "../redux/actions";
+import { selectCity } from "../redux/actions";
 import Spinner from "./Spinner";
 
 class SliderItem extends React.Component {
