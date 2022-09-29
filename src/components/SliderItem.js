@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from "react-redux";
 import { detailInform, selectCity } from "../redux/actions";
 import Spinner from "./Spinner";
