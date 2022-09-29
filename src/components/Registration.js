@@ -21,6 +21,7 @@ export default function Registration({onChange, onSubmit, errors}){
             <span className='err'>{errors.passwordControl}</span>
 
             <input type="submit" value="Зарегестрироваться" className='modale__submit' />
+            <input type="button" value="Авторизироваться" className='modale__submit' onClick={() => window.location.href = "/auth"}/>
         </form>
     )
 }

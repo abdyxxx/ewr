@@ -76,4 +76,37 @@
 
 .err {
   color: red;
+}
+
+.modale_detailInform {
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6509803922);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modale_content {
+  background-color: #fff;
+  border-radius: 25px;
+  padding: 15px 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.hide-btn {
+  display: block;
+  text-align: center;
+  background-color: #003d9f;
+  color: #fff;
+  padding: 11px;
+  font-size: 25px;
+  font-weight: 600;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
 }/*# sourceMappingURL=Modale.css.map */

@@ -23,3 +23,15 @@ export function selectCity(city) {
         data: city
     }
 }
+export function setAuth(value) {
+    return {
+        type: 'AUTH',
+        data: value
+    }
+}
+export function detailInform(value) {
+    return {
+        type: 'SHOW_DETAIL',
+        data: value
+    }
+}

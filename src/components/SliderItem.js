@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { selectCity } from "../redux/actions";
+import { detailInform, selectCity } from "../redux/actions";
 import Spinner from "./Spinner";
 
 class SliderItem extends React.Component {
@@ -49,8 +49,13 @@ class SliderItem extends React.Component {
         })
     }
 
+    handleClick = (e) => { 
+        this.props.selectCity(e.target.dataset.cityname)
+        this.props.showDetail(true)
+    }
+
     render() {
-        return (<div className={'slider__item'} id={this.props.id} data-cityname={this.state.cityName} style={{backgroundImage: `url(${this.state.imgURL})`}} onClick={(e) => this.props.selectCity(e.target.dataset.cityname)}>
+        return (<div className={'slider__item'} id={this.props.id} data-cityname={this.state.cityName} style={{backgroundImage: `url(${this.state.imgURL})`}} onClick={this.handleClick}>
             {!!this.state.isLoaded ?
 
                 <React.Fragment>
@@ -84,7 +89,8 @@ class SliderItem extends React.Component {
 
 function mapDispatchToProps(dispatch){
     return {
-        selectCity: (city) => dispatch(selectCity(city))
+        selectCity: (city) => dispatch(selectCity(city)),
+        showDetail: (value) => dispatch(detailInform(value))
     }
 }
 

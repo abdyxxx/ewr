@@ -14,10 +14,6 @@
   font-family: "Golos-Bold";
   src: url("./fonts/Golos-UI_Bold.ttf");
 }
-body {
-  padding-bottom: 50px;
-}
-
 h1 {
   font-family: "Golos-Regular";
   color: #003d9f;
@@ -27,6 +23,8 @@ h1 {
 header {
   background-color: #b9e0ff;
   padding: 35px 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .mainWrapper {
@@ -164,6 +162,7 @@ header {
   font-family: "Golos-Regular";
   font-size: 30px;
   max-width: 600px;
+  margin-bottom: 50px;
 }
 
 .search__text {
@@ -193,11 +192,12 @@ header {
 
 .detail-inform {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(8, 1fr);
+  margin-bottom: 10px;
 }
 
 .detail-inform__header {
-  font-size: 40px;
+  font-size: 35px;
   font-family: "Golos-Bold";
   text-align: center;
   padding: 10px 0;
@@ -211,27 +211,43 @@ header {
 .detail-inform__cell {
   border: 1px solid;
   font-family: "Golos-Regular";
-  font-size: 25px;
+  font-size: 19px;
   text-align: center;
 }
 .detail-inform__cell p {
-  padding: 8px;
+  padding: 4px;
 }
 
-@media (max-width: 1080px) {
+.notfound {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notfound__text {
+  font-size: 3.5em;
+}
+
+@media (max-width: 1300px) {
   .detail-inform__header {
-    font-size: 30px;
+    font-size: 20px;
   }
   .detail-inform__cell {
+    font-size: 15px;
+  }
+}
+@media (max-width: 1080px) {
+  .detail-inform__header {
     font-size: 20px;
+  }
+  .detail-inform__cell {
+    font-size: 15px;
   }
 }
 @media (max-width: 900px) {
   .slider__text {
     font-size: 0.7em;
-  }
-  .detail-inform {
-    grid-template-columns: repeat(4, 1fr);
   }
   table td {
     font-size: 20px;
@@ -288,7 +304,7 @@ header {
     gap: 0;
   }
   .detail-inform {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
   .slider__dot {
     height: 15px;

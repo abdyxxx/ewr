@@ -13,8 +13,6 @@
 
 $back_color: #b9e0ff
 $primary_color: #003d9f
-body
-    padding-bottom: 50px
 h1
     font-family: 'Golos-Regular'
     color: $primary_color
@@ -22,6 +20,8 @@ h1
 header
     background-color: $back_color
     padding: 35px 10px
+    display: flex
+    justify-content: space-between
 .mainWrapper
     max-width: 1300px
     margin: 0 auto
@@ -121,6 +121,7 @@ header
     font-family: 'Golos-Regular'
     font-size: 30px
     max-width: 600px
+    margin-bottom: 50px
 .search__text
     margin-bottom: 15px
 .search__input
@@ -141,9 +142,10 @@ header
         cursor: pointer
 .detail-inform
     display: grid
-    grid-template-columns: repeat(6, 1fr)
+    grid-template-columns: repeat(8, 1fr)
+    margin-bottom: 10px
 .detail-inform__header
-    font-size: 40px
+    font-size: 35px
     font-family: 'Golos-Bold'
     text-align: center
     padding: 10px 0
@@ -153,21 +155,31 @@ header
 .detail-inform__cell
     border: 1px solid
     font-family: 'Golos-Regular'
-    font-size: 25px
+    font-size: 19px
     text-align: center
     p
-        padding: 8px
+        padding: 4px
+.notfound
+    height: 100vh
+    display: flex
+    justify-content: center
+    align-items: center
+.notfound__text
+    font-size: 3.5em
+@media (max-width: 1300px)
+    .detail-inform__header
+        font-size: 20px
+    .detail-inform__cell
+        font-size: 15px
 
 @media (max-width: 1080px)
     .detail-inform__header
-        font-size: 30px
-    .detail-inform__cell
         font-size: 20px
+    .detail-inform__cell
+        font-size: 15px
 @media (max-width: 900px)
     .slider__text
         font-size: 0.7em
-    .detail-inform
-        grid-template-columns: repeat(4, 1fr)
     table
         td
             font-size: 20px
@@ -207,7 +219,7 @@ header
         font-size: 0.35em
         gap: 0
     .detail-inform
-        grid-template-columns: repeat(3, 1fr)
+        grid-template-columns: repeat(4, 1fr)
     .slider__dot
         height: 15px
         width: 15px

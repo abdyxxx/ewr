@@ -1,12 +1,16 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { detailInform } from "../redux/actions";
 import Spinner from "./Spinner";
 
 export default function DetailInform(props) {
     const [daysWeather, setDaysWeather] = useState({});
     const [isLoading, setIsLoading] = useState(false);
+
     const cityName = useSelector(state => state.selectedCity);
+    const showModale = useSelector(state => state.showDetail.showModale);
+    const dispatch = useDispatch();
 
     const getData = async (city) => {
         setIsLoading(true)
@@ -34,20 +38,24 @@ export default function DetailInform(props) {
     return (
         !!cityName.cityName ?
             daysWeather[0] ?
-                isLoading ?
-                    <Spinner /> :
-                    <React.Fragment>
-                        <div className="detail-inform__header">Погода в городе {cityName.cityName} за последние 30 дней</div>
-                        <div className="detail-inform">
-                            {daysWeather.map((day, index) => (
-                                <div key={index} className='detail-inform__cell'>
-                                    <p className="detail-inform__date">{day.datetime}</p>
-                                    <p className="detail-inform__temp">Температура<br /> {day.temp}°C</p>
-                                    <p className="detail-inform__wind">Ветер<br /> {Math.round(day.windspeed * 0.277778)} м/с</p>
+                showModale ?
+                    <div className="modale_detailInform">
+                        {isLoading ?
+                            <Spinner /> :
+                            <div className="modale_content">
+                                <div className="detail-inform__header">Погода в городе {cityName.cityName} за последние 30 дней</div>
+                                <div className="detail-inform">
+                                    {daysWeather.map((day, index) => (
+                                        <div key={index} className='detail-inform__cell'>
+                                            <p className="detail-inform__date">{day.datetime}</p>
+                                            <p className="detail-inform__temp">Температура<br /> {day.temp}°C</p>
+                                            <p className="detail-inform__wind">Ветер<br /> {Math.round(day.windspeed * 0.277778)} м/с</p>
+                                        </div>
+                                    ))}
                                 </div>
-                            ))}
-                        </div>
-                    </React.Fragment>
-                : null : null
+                                <button className="hide-btn" onClick={() => dispatch(detailInform(false))}>Скрыть</button>
+                            </div>}
+                    </div>
+                    : null : null : null
     )
 }
