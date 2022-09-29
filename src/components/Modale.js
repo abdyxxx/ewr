@@ -7,6 +7,8 @@ import { useDispatch } from "react-redux"
 import { setAuth } from "../redux/actions"
 import { Route, Routes } from 'react-router-dom';
 import NotFound from './NotFound';
+import Main from './Main';
+import Spinner from './Spinner';
 
 export default function Modale() {
     let [userData, setUserData] = useState({
@@ -97,6 +99,7 @@ export default function Modale() {
             <Routes>
                 <Route path="/auth" element={<Authorization onChange={handleField} onSubmit={handleSubmitAuth} errors={errors} />} />
                 <Route path="/reg" element={<Registration onChange={handleField} onSubmit={handleSubmitReg} errors={errors} />} />
+                <Route path="/" element={<Spinner />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </div>

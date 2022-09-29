@@ -5,6 +5,7 @@ import './App.css';
 import Main from './components/Main';
 import Modale from './components/Modale';
 import NotFound from './components/NotFound';
+import Spinner from './components/Spinner';
 
 function App() {
   const isAuth = useSelector(state => state.isAuth.isAuth)
@@ -16,6 +17,8 @@ function App() {
         <Modale />
         : <Routes>
           <Route path="/" element={<Main />} />
+          <Route path="/auth" element={<Spinner />} />
+          <Route path="/reg" element={<Spinner />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
     }

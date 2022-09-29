@@ -151,6 +151,10 @@ header {
           animation: spinner 1.5s linear infinite;
 }
 
+.App {
+  height: 100vh;
+}
+
 .spinner-container {
   display: grid;
   justify-content: center;
