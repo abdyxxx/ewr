@@ -35,3 +35,18 @@ export function detailInform(value) {
         data: value
     }
 }
+
+export function cityData(data, cityName) {
+    return {
+        type: 'CITY_DATA',
+        data,
+        cityName
+    }
+}
+export function imgURL(img, cityName) {
+    return {
+        type: 'BACK_IMG',
+        img,
+        cityName
+    }
+}

@@ -1,82 +1,69 @@
 import axios from "axios";
 import React from 'react';
 import { connect } from "react-redux";
-import { detailInform, selectCity } from "../redux/actions";
+import { detailInform, selectCity, cityData, imgURL } from "../redux/actions";
 import Spinner from "./Spinner";
 
 class SliderItem extends React.Component {
     constructor(props) {
         super(props);
-        this.API_KEY = '17582dea4abae09f22389693d0af9aa6';
-        this.url = `http://api.openweathermap.org/data/2.5/weather?q=${this.props.cityName}&lang=ru&units=metric&appid=${this.API_KEY}
-    `;
-        this.imgURL = `https://pixabay.com/api/?key=30005054-b01b9d0c1ed9ef5cf5bbc1624&q=${this.props.cityName}`;
         this.state = {
             isLoaded: false,
         }
     }
-
     componentDidMount() {
         this.getData();
     }
-    componentDidUpdate(){
-        !!this.state.data ? this.state.cityName === this.props.cityName ? console.log('') : this.getData()
-        : console.log('');
+    componentDidUpdate() {
+        !!this.state.data ? this.state.cityName == this.props.cityName ? console.log('') : this.getData()
+            : console.log('');
     }
-// номер текущей картинки в массиве
-    imgNumber = 0; 
+    // номер текущей картинки в массиве
+    imgNumber = 0;
 
-// запрашиваем данные и устанавливаем в состояние
+    // запрашиваем данные и устанавливаем в состояние
     async getData(indexImg = 0) {
-        if(indexImg > 6){
-            alert('Может хватит?')
-        }
-        this.url = `http://api.openweathermap.org/data/2.5/weather?q=${this.props.cityName}&lang=ru&units=metric&appid=${this.API_KEY}
-        `;
+        this.url = `http://api.openweathermap.org/data/2.5/weather?q=${this.props.cityName}&lang=ru&units=metric&appid=17582dea4abae09f22389693d0af9aa6`;
         this.imgURL = `https://pixabay.com/api/?key=30005054-b01b9d0c1ed9ef5cf5bbc1624&q=${this.props.cityName}&image_type=photo&max_width=800`;
 
-        let response = await axios.get(this.url).catch(err => alert(err));
+        this.props.cityDataThunk(this.url, this.props.cityName);
+        this.props.backImgThunk(this.imgURL, this.props.cityName);
 
-// Если нет картинки для данного города подставить шаблонную
+        // Если нет картинки для данного города подставить шаблонную
         let imgURL = await axios.get(this.imgURL).then(res => res.data.hits[indexImg].largeImageURL)
-        .catch(err => err.name == 'TypeError' ? 'https://i.ytimg.com/vi/Jn0yaaLFNvY/maxresdefault.jpg' : alert('img', err));
-        
+            .catch(err => err.name == 'TypeError' ? 'https://i.ytimg.com/vi/Jn0yaaLFNvY/maxresdefault.jpg' : alert('img', err));
+
         this.setState({
-            data: response.data,
             cityName: this.props.cityName,
-            imgURL,
             isLoaded: true,
         })
     }
 
-    handleClick = (e) => { 
+    handleClick = (e) => {
         this.props.selectCity(e.target.dataset.cityname)
         this.props.showDetail(true)
     }
-
     render() {
-        return (<div className={'slider__item'} id={this.props.id} data-cityname={this.state.cityName} style={{backgroundImage: `url(${this.state.imgURL})`}} onClick={this.handleClick}>
+        return (<div className={'slider__item'} id={this.props.id} data-cityname={this.props.cityName} style={{ backgroundImage: `url(${this.props.backImg[this.props.cityName]})` }} onClick={this.handleClick}>
             {!!this.state.isLoaded ?
 
                 <React.Fragment>
                     <div className="slider__text">
                         <h2 className='slider__cityName'>
-                            {this.state.data.name}
+                            {this.props.citiesData[this.props.cityName].name}
                         </h2>
                         <p className='slider__tempInfo'>
                             <p className='slider__temp'>
-                                {this.state.data.main.temp > 0 ? '+' : this.state.data.main.temp < 0 ? '-' : ''}{Math.round(this.state.data.main.temp)}°
-                            </p> 
+                                {this.props.citiesData[this.props.cityName].main.temp > 0 ? '+' : this.props.citiesData[this.props.cityName].main.temp < 0 ? '-' : ''}{Math.round(this.props.citiesData[this.props.cityName].main.temp)}°
+                            </p>
                             <p className='slider__tempDescr'>
-                                {this.state.data.weather[0].description}
+                                {this.props.citiesData[this.props.cityName].weather[0].description}
                             </p>
                         </p>
-                        
-                        <p className='slider__wind'>
-                            Ветер {Math.round(this.state.data.wind.speed)} м/с
-                        </p>
 
-                        <input type="button" value="Сменить картинку" onClick={() => this.getData(++this.imgNumber)} className="switch-button"/>
+                        <p className='slider__wind'>
+                            Ветер {Math.round(this.props.citiesData[this.props.cityName].wind.speed)} м/с
+                        </p>
 
                     </div>
                 </React.Fragment> : <Spinner />
@@ -87,11 +74,30 @@ class SliderItem extends React.Component {
     }
 }
 
-function mapDispatchToProps(dispatch){
+const getCityData = (url, cityName) => (dispatch) => {
+    axios.get(url)
+        .then(response => dispatch(cityData(response.data, cityName)))
+        .catch(err => console.log(err.message))
+}
+const getBackImg = (url, cityName) => (dispatch) => {
+    axios.get(url)
+        .then(response => dispatch(imgURL(response.data.hits[0].largeImageURL, cityName)))
+        .catch(err => err.name == 'TypeError' ? 'https://i.ytimg.com/vi/Jn0yaaLFNvY/maxresdefault.jpg' : alert('img', err));
+}
+
+function mapDispatchToProps(dispatch) {
     return {
         selectCity: (city) => dispatch(selectCity(city)),
-        showDetail: (value) => dispatch(detailInform(value))
+        showDetail: (value) => dispatch(detailInform(value)),
+        cityDataThunk: (url, cityName) => dispatch(getCityData(url, cityName)),
+        backImgThunk: (url, cityName) => dispatch(getBackImg(url, cityName))
+    }
+}
+function mapStateToProps(state) {
+    return {
+        citiesData: state.citiesData,
+        backImg: state.backImg,
     }
 }
 
-export default connect(null, mapDispatchToProps)(SliderItem)
+export default connect(mapStateToProps, mapDispatchToProps)(SliderItem)

@@ -37,12 +37,10 @@ export default function SearchCity() {
             if (sliderItems.length == 5) {
                 dispatch(setItem(selectedCity));
                 dispatch(selectCity(selectedCity));
-                console.log(selectedCity)
             // Заменить имеющийся город в слайдере
             }else if(sliderItems.length == 6){
                 dispatch(replaceItem(selectedCity));
                 dispatch(selectCity(selectedCity));
-                console.log(selectedCity)
             }
         }
     }, [selectedCity])
