@@ -1,3 +1,5 @@
+import axios from "axios"
+
 export function setItem(city) {
     return {
         type: 'ADD_ITEM',
@@ -49,4 +51,15 @@ export function imgURL(img, cityName) {
         img,
         cityName
     }
+}
+
+export const getCityData = (url, cityName) => (dispatch) => {
+    axios.get(url)
+        .then(response => dispatch(cityData(response.data, cityName)))
+        .catch(err => console.log(err.message))
+}
+export const getBackImg = (url, cityName) => (dispatch) => {
+    axios.get(url)
+        .then(response => dispatch(imgURL(response.data.hits[0].largeImageURL, cityName)))
+        .catch(err => err.name == 'TypeError' ? 'https://i.ytimg.com/vi/Jn0yaaLFNvY/maxresdefault.jpg' : alert('img', err));
 }

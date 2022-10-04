@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from 'react';
 import { connect } from "react-redux";
-import { detailInform, selectCity, cityData, imgURL } from "../redux/actions";
+import { detailInform, selectCity, cityData, imgURL, getCityData, getBackImg } from "../redux/actions";
 import Spinner from "./Spinner";
 
 class SliderItem extends React.Component {
@@ -18,9 +18,6 @@ class SliderItem extends React.Component {
         !!this.state.data ? this.state.cityName == this.props.cityName ? console.log('') : this.getData()
             : console.log('');
     }
-    // номер текущей картинки в массиве
-    imgNumber = 0;
-
     // запрашиваем данные и устанавливаем в состояние
     async getData(indexImg = 0) {
         this.url = `http://api.openweathermap.org/data/2.5/weather?q=${this.props.cityName}&lang=ru&units=metric&appid=17582dea4abae09f22389693d0af9aa6`;
@@ -42,27 +39,27 @@ class SliderItem extends React.Component {
     handleClick = (e) => {
         this.props.selectCity(e.target.dataset.cityname)
         this.props.showDetail(true)
+        console.log(this.props)
     }
     render() {
         return (<div className={'slider__item'} id={this.props.id} data-cityname={this.props.cityName} style={{ backgroundImage: `url(${this.props.backImg[this.props.cityName]})` }} onClick={this.handleClick}>
             {!!this.state.isLoaded ?
-
                 <React.Fragment>
                     <div className="slider__text">
                         <h2 className='slider__cityName'>
-                            {this.props.citiesData[this.props.cityName].name}
+                            {this.props.citiesData[this.state.cityName].name}
                         </h2>
                         <p className='slider__tempInfo'>
                             <p className='slider__temp'>
-                                {this.props.citiesData[this.props.cityName].main.temp > 0 ? '+' : this.props.citiesData[this.props.cityName].main.temp < 0 ? '-' : ''}{Math.round(this.props.citiesData[this.props.cityName].main.temp)}°
+                                {this.props.citiesData[this.state.cityName].main.temp > 0 ? '+' : this.props.citiesData[this.state.cityName].main.temp < 0 ? '-' : ''}{Math.round(this.props.citiesData[this.state.cityName].main.temp)}°
                             </p>
                             <p className='slider__tempDescr'>
-                                {this.props.citiesData[this.props.cityName].weather[0].description}
+                                {this.props.citiesData[this.state.cityName].weather[0].description}
                             </p>
                         </p>
 
                         <p className='slider__wind'>
-                            Ветер {Math.round(this.props.citiesData[this.props.cityName].wind.speed)} м/с
+                            Ветер {Math.round(this.props.citiesData[this.state.cityName].wind.speed)} м/с
                         </p>
 
                     </div>
@@ -72,17 +69,6 @@ class SliderItem extends React.Component {
 
         </div>)
     }
-}
-
-const getCityData = (url, cityName) => (dispatch) => {
-    axios.get(url)
-        .then(response => dispatch(cityData(response.data, cityName)))
-        .catch(err => console.log(err.message))
-}
-const getBackImg = (url, cityName) => (dispatch) => {
-    axios.get(url)
-        .then(response => dispatch(imgURL(response.data.hits[0].largeImageURL, cityName)))
-        .catch(err => err.name == 'TypeError' ? 'https://i.ytimg.com/vi/Jn0yaaLFNvY/maxresdefault.jpg' : alert('img', err));
 }
 
 function mapDispatchToProps(dispatch) {

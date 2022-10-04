@@ -7,7 +7,6 @@ import { useDispatch } from "react-redux"
 import { setAuth } from "../redux/actions"
 import { Route, Routes } from 'react-router-dom';
 import NotFound from './NotFound';
-import Main from './Main';
 import Spinner from './Spinner';
 
 export default function Modale() {
