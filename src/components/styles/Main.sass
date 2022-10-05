@@ -178,6 +178,8 @@ header
     .detail-inform__cell
         font-size: 15px
 @media (max-width: 900px)
+    .detail-inform
+        grid-template-columns: repeat(6, 1fr)
     .slider__text
         font-size: 0.7em
     table
@@ -191,6 +193,8 @@ header
         padding: 6px
 
 @media (max-width: 768px)
+    .detail-inform__cell
+        font-size: 14px
     .detail-inform__header
         font-size: 22px
     .slider__text
@@ -198,21 +202,25 @@ header
     .slider__item
         background-size: auto 100%
 @media (max-width: 600px)
+    .detail-inform__cell
+        font-size: 12px
+    .modale_content
+        padding: 5px 5px
     .detail-inform__header
         font-size: 15px
     .mainWrapper
         padding: 0
-    .detail-inform__cell
-        font-size: 15px
-        p
-            padding: 3px
-@media (max-width: 480px)
+@media (max-width: 536px)
     .slider__text
         font-size: 0.5em
         gap: 5px
     .detail-inform__cell
-        font-size: 12px
+        font-size: 7px
+    .detail-inform
+        grid-template-columns: repeat(4, 1fr)
 @media (max-width: 390px)
+    .modale_detailInform
+        padding: 10px
     .detail-inform__header
         font-size: 10px
     .slider__text

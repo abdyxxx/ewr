@@ -1,4 +1,5 @@
 import axios from "axios"
+import { useDispatch } from "react-redux"
 
 export function setItem(city) {
     return {
@@ -45,6 +46,12 @@ export function cityData(data, cityName) {
         cityName
     }
 }
+export function setLoading(value) {
+    return {
+        type: 'SET_LOADING',
+        value
+    }
+}
 export function imgURL(img, cityName) {
     return {
         type: 'BACK_IMG',
@@ -56,10 +63,10 @@ export function imgURL(img, cityName) {
 export const getCityData = (url, cityName) => (dispatch) => {
     axios.get(url)
         .then(response => dispatch(cityData(response.data, cityName)))
-        .catch(err => console.log(err.message))
+        .catch(err => alert(err.message))
 }
 export const getBackImg = (url, cityName) => (dispatch) => {
     axios.get(url)
         .then(response => dispatch(imgURL(response.data.hits[0].largeImageURL, cityName)))
-        .catch(err => err.name == 'TypeError' ? 'https://i.ytimg.com/vi/Jn0yaaLFNvY/maxresdefault.jpg' : alert('img', err));
+        .catch(err => err.name == 'TypeError' ? dispatch(imgURL('https://i.ytimg.com/vi/Jn0yaaLFNvY/maxresdefault.jpg', cityName)) : console.log('img', err));
 }

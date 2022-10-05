@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import SliderItem from './SliderItem'
+// import SliderItem from './SliderItem'
+import SliderItemFunctional from './SliderItemFunctional'
 import { useSelector } from 'react-redux';
 
 export default function Slider() {
@@ -56,7 +57,7 @@ export default function Slider() {
         <div className='slider' ref={sliderRef}>
             <div className="slider__roll" ref={sliderRollRef}>
                 {sliderItems.map((res, index) => (
-                    <SliderItem key={index} cityName={res} id={index}/>
+                    <SliderItemFunctional key={index} cityName={res} id={index}/>
                 ))
                 }
             </div>

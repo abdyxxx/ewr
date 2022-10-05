@@ -109,4 +109,10 @@
   border-radius: 10px;
   border: none;
   cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+  .modale_content {
+    padding: 5px 15px;
+  }
 }/*# sourceMappingURL=Modale.css.map */

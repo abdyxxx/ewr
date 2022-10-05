@@ -9,7 +9,6 @@ import Spinner from './components/Spinner';
 
 function App() {
   const isAuth = useSelector(state => state.isAuth.isAuth)
-  console.log(isAuth)
 
   return (
     <div className="App">{
