@@ -21,6 +21,7 @@ export function addData(data) {
     }
 }
 export function selectCity(city) {
+    localStorage.setItem(`${sessionStorage.currentUser + '_city'}`, city)
     return {
         type: 'SELECT_CITY',
         data: city
@@ -32,7 +33,7 @@ export function setAuth(value) {
         data: value
     }
 }
-export function detailInform(value) {
+export function showDetailInform(value) {
     return {
         type: 'SHOW_DETAIL',
         data: value
@@ -59,7 +60,31 @@ export function imgURL(img, cityName) {
         cityName
     }
 }
+export function setCities(data) {
+    return {
+        type: 'CITIES_LIST',
+        data
+    }
+}
+export function detailWeather(data) {
+    return {
+        type: 'DETAIL_INFORM',
+        data
+    }
+}
 
+export const getCitiesList = (url) => (dispatch) => {
+    axios.get(url)
+        .then(res => dispatch(setCities(res.data)))
+        .catch(err => {
+            if (err.response.status == 400)
+                alert('полная информация по городу не найдена')
+        })
+}
+export const getDetail = (url) => (dispatch) => {
+    axios.get(url)
+        .then(res => dispatch(detailWeather(res.data)))
+}
 export const getCityData = (url, cityName) => (dispatch) => {
     axios.get(url)
         .then(response => dispatch(cityData(response.data, cityName)))

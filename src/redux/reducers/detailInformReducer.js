@@ -2,11 +2,11 @@ const initialState = {
     
 }
 
-export default function showDetailReducer(state = initialState, action) {
+export default function detailInformReducer(state = initialState, action) {
     switch (action.type) {
-        case 'SHOW_DETAIL':
+        case 'DETAIL_INFORM':
             return {
-                showModale: action.data
+                detailInform: action.data
             }
         default:
             return state;

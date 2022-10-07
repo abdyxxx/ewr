@@ -79,9 +79,9 @@ export default function Modale() {
         e.preventDefault();
         if (anyErrorsAuth()) {
             setErrors = {}
-            sessionStorage.setItem('isAuth', true);
             dispatch(setAuth(true));
-            window.location.href = "/"
+            window.location.href = "/";
+            sessionStorage.setItem("currentUser", userData.login)
         }
     }
 

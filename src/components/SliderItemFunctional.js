@@ -1,7 +1,6 @@
-import axios from "axios";
 import React, { useEffect, useState } from 'react';
 import { connect, useDispatch, useSelector } from "react-redux";
-import { detailInform, selectCity, cityData, imgURL, getCityData, getBackImg } from "../redux/actions";
+import { showDetailInform, selectCity, getCityData, getBackImg } from "../redux/actions";
 import Spinner from "./Spinner";
 
 export default function SliderItem(props) {
@@ -19,7 +18,7 @@ export default function SliderItem(props) {
 
     const handleClick = (e) => {
         dispatch(selectCity(e.target.dataset.cityname));
-        dispatch(detailInform(true))
+        dispatch(showDetailInform(true))
     }
     // 
     

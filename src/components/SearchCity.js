@@ -1,10 +1,8 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { setItem, replaceItem, selectCity } from '../redux/actions';
+import { setItem, replaceItem, selectCity, getCitiesList } from '../redux/actions';
 
 export default function SearchCity() {
-    const [data, setData] = useState([]);
     const [filtredData, setFiltredData] = useState([]);
     const [inputValue, setInputValue] = useState('');
     const [selectedCity, setSelectedCity] = useState('');
@@ -12,24 +10,21 @@ export default function SearchCity() {
 
     const dispatch = useDispatch();
     const sliderItems = useSelector(state => state.sliderItems.items)
+    const citiesList = useSelector(state => state.citiesList.citiesList)
 
     let handleInput = (e) => {
         setInputValue(e.target.value);
         setInputActive(true)
-        setFiltredData(data.filter(item => item.name.toLowerCase().includes(e.target.value.toLowerCase())));
+        if(citiesList) setFiltredData(citiesList.filter(item => item.name.toLowerCase().includes(e.target.value.toLowerCase())));
     }
-
-    async function getResponse() {
-        let response = await axios.get('https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/5b3dd46ad10990bca47b04b4739a02ba/world-cities_json.json')
-            .then((res) => res.data)
-        setData(response);
-    }
-
     function handleHints(e) {
         setSelectedCity(e.target.innerHTML);
         setInputActive(false);
         dispatch(selectCity(selectedCity))
     }
+    useEffect(() => {
+        if (localStorage[`${sessionStorage.currentUser + '_city'}`]) setSelectedCity(localStorage[`${sessionStorage.currentUser + '_city'}`])
+    }, [])
 
     useEffect(() => {
         if (selectedCity) {
@@ -46,7 +41,7 @@ export default function SearchCity() {
     }, [selectedCity])
 
     useEffect(() => {
-        getResponse();
+        dispatch(getCitiesList('https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/5b3dd46ad10990bca47b04b4739a02ba/world-cities_json.json'))
     }, [])
     return (
         <div className='search'>

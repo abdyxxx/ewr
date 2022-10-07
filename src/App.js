@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
@@ -6,6 +6,7 @@ import Main from './components/Main';
 import Modale from './components/Modale';
 import NotFound from './components/NotFound';
 import Spinner from './components/Spinner';
+import axios from 'axios';
 
 function App() {
   const isAuth = useSelector(state => state.isAuth.isAuth)

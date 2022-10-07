@@ -1,5 +1,5 @@
 const initialState = {
-    isAuth: !!sessionStorage.isAuth
+    isAuth: !!sessionStorage.currentUser
 }
 
 export default function isAuthReducer(state = initialState, action) {

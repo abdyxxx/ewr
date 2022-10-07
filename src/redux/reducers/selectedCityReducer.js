@@ -1,5 +1,5 @@
 const initialState = {
-    cityName: ''
+    cityName: localStorage[`${sessionStorage.currentUser + '_city'}`]
 }
 
 export default function selectedCityReducer(state = initialState, action) {
