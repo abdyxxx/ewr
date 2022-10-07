@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { connect, useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from 'react';
+import {  useDispatch, useSelector } from "react-redux";
 import { showDetailInform, selectCity, getCityData, getBackImg } from "../redux/actions";
 import Spinner from "./Spinner";
 
