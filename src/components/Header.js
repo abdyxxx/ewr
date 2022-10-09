@@ -1,8 +1,9 @@
 import { useDispatch } from "react-redux"
-import { setAuth } from "../redux/actions"
+import { setAuth } from '../redux/reducers/toolkitReducer';
 
 export default function Header(){
     const dispatch = useDispatch()
+
     function logout(){
         sessionStorage.clear()
         dispatch(setAuth(false));

@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { getDetail, showDetailInform } from "../redux/actions";
+import { getDetail, showDetailInform } from '../redux/reducers/toolkitReducer';
 import Spinner from "./Spinner";
 
 export default function DetailInform(props) {
     const [isLoading, setIsLoading] = useState(false);
 
-    const cityName = useSelector(state => state.selectedCity);
-    const showModale = useSelector(state => state.showDetail.showModale);
-    const detailInform = useSelector(state => state.detailInform.detailInform);
+    const cityName = useSelector(state => state.reducer.selectedCity);
+    const showModale = useSelector(state => state.reducer.showDetail);
+    const detailInform = useSelector(state => state.reducer.detailInform);
     const dispatch = useDispatch();
 
     const getData = (city) => {
@@ -22,19 +22,19 @@ export default function DetailInform(props) {
     }
 
     useEffect(() => {
-        if (cityName.cityName) {
-            getData(cityName.cityName)
+        if (cityName) {
+            getData(cityName)
         }
     }, [cityName])
     return (
-        !!cityName.cityName ?
+        !!cityName ?
             detailInform ?
                 showModale ?
                     <div className="modale_detailInform">
                         {isLoading ?
                             <Spinner /> :
                             <div className="modale_content">
-                                <div className="detail-inform__header">Погода в городе {cityName.cityName} за последние 30 дней</div>
+                                <div className="detail-inform__header">Погода в городе {cityName} за последние 30 дней</div>
                                 <div className="detail-inform">
                                     {detailInform.days.map((day, index) => (
                                         <div key={index} className='detail-inform__cell'>

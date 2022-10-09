@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { setItem, replaceItem, selectCity, getCitiesList } from '../redux/actions';
+import { setItem, replaceItem, selectCity, getCitiesList }  from '../redux/reducers/toolkitReducer';
 
 export default function SearchCity() {
     const [filtredData, setFiltredData] = useState([]);
     const [inputValue, setInputValue] = useState('');
-    const [selectedCity, setSelectedCity] = useState('');
+    const [selectedCity, setSelectedCity] = useState(localStorage[sessionStorage.currentUser + '_city'] || '');
     const [inputActive, setInputActive] = useState(true);
 
     const dispatch = useDispatch();
-    const sliderItems = useSelector(state => state.sliderItems.items)
-    const citiesList = useSelector(state => state.citiesList.citiesList)
+    const sliderItems = useSelector(state => state.reducer.sliderItems)
+    const citiesList = useSelector(state => state.reducer.citiesList)
 
     let handleInput = (e) => {
         setInputValue(e.target.value);
@@ -22,6 +22,7 @@ export default function SearchCity() {
         setInputActive(false);
         dispatch(selectCity(selectedCity))
     }
+    useEffect(() => {localStorage.setItem(`${sessionStorage.currentUser + '_city'}`, selectedCity)}, [selectedCity])
     useEffect(() => {
         if (localStorage[`${sessionStorage.currentUser + '_city'}`]) setSelectedCity(localStorage[`${sessionStorage.currentUser + '_city'}`])
     }, [])

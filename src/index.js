@@ -1,13 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { applyMiddleware, createStore } from 'redux';
-import { rootReducer } from './redux/reducers/rootReducer';
 import { Provider } from 'react-redux';
-import thunk from "redux-thunk";
 import { BrowserRouter } from 'react-router-dom';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import toolkitSlice from './redux/reducers/toolkitReducer';
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+
+const middleware = getDefaultMiddleware({
+    immutableCheck: false,
+    serializableCheck: false,
+    thunk: true,
+  });
+
+const store = configureStore({
+    reducer: toolkitSlice,
+    middleware
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

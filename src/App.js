@@ -9,8 +9,9 @@ import Spinner from './components/Spinner';
 import axios from 'axios';
 
 function App() {
-  const isAuth = useSelector(state => state.isAuth.isAuth)
-
+  const isAuth = useSelector(state => state.reducer.isAuth)
+  const state = useSelector(state => state.reducer)
+  console.log(isAuth)
   return (
     <div className="App">{
       !isAuth ?

@@ -1,5 +1,4 @@
 import axios from "axios"
-import { useDispatch } from "react-redux"
 
 export function setItem(city) {
     return {
@@ -14,14 +13,7 @@ export function replaceItem(city) {
         data: city
     }
 }
-export function addData(data) {
-    return {
-        type: 'ADD_DATA',
-        data
-    }
-}
 export function selectCity(city) {
-    localStorage.setItem(`${sessionStorage.currentUser + '_city'}`, city)
     return {
         type: 'SELECT_CITY',
         data: city
@@ -45,12 +37,6 @@ export function cityData(data, cityName) {
         type: 'CITY_DATA',
         data,
         cityName
-    }
-}
-export function setLoading(value) {
-    return {
-        type: 'SET_LOADING',
-        value
     }
 }
 export function imgURL(img, cityName) {

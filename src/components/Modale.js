@@ -4,10 +4,10 @@ import { useState } from 'react';
 import Registration from './Registration';
 import Authorization from './Authorization';
 import { useDispatch } from "react-redux"
-import { setAuth } from "../redux/actions"
 import { Route, Routes } from 'react-router-dom';
 import NotFound from './NotFound';
 import Spinner from './Spinner';
+import { setAuth } from '../redux/reducers/toolkitReducer';
 
 export default function Modale() {
     let [userData, setUserData] = useState({

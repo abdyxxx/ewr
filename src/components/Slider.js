@@ -11,8 +11,7 @@ export default function Slider() {
         if(window.innerWidth < 769) return 1.3
         else return 2
     }
-
-    let sliderItems = useSelector(state => state.sliderItems.items);
+    let sliderItems = useSelector(state => state.reducer.sliderItems);
 
 
     const setActiveSlide = (item) => {
@@ -29,7 +28,7 @@ export default function Slider() {
     }
 
     useEffect(() => {
-        setActiveSlide(firstDotRef.current);
+        if (!localStorage[sessionStorage.currentUser + '_city']) setActiveSlide(firstDotRef.current);
     }, [])
 
     useEffect(() => {
@@ -52,7 +51,6 @@ export default function Slider() {
     const sliderRollRef = useRef(null);
     const lastDotRef = useRef(null);
     const firstDotRef = useRef(null);
-
     return (
         <div className='slider' ref={sliderRef}>
             <div className="slider__roll" ref={sliderRollRef}>
@@ -63,7 +61,7 @@ export default function Slider() {
             </div>
             <div className='slider__pag'>
                 {
-                    sliderItems.map((res, index) => (
+                    sliderItems.map((item, index) => (
                         <span key={index} className='slider__dot' index={index} onClick={changeSlide} ref={index == 5 ? lastDotRef : index == 0 ? firstDotRef : null}></span>
                     ))
                 }

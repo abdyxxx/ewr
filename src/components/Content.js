@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import DetailInform from './DetailInform';
 
 export default function Content() {
-    let items = useSelector((state) => state.sliderItems.items);
+    let items = useSelector((state) => state.reducer.sliderItems);
     
     return (
         <div className='mainWrapper'>

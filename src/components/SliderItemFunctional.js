@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import {  useDispatch, useSelector } from "react-redux";
-import { showDetailInform, selectCity, getCityData, getBackImg } from "../redux/actions";
+import { showDetailInform, selectCity, getCityData, getBackImg } from '../redux/reducers/toolkitReducer';
 import Spinner from "./Spinner";
 
 export default function SliderItem(props) {
@@ -8,22 +8,20 @@ export default function SliderItem(props) {
     const imgURL = `https://pixabay.com/api/?key=30005054-b01b9d0c1ed9ef5cf5bbc1624&q=${props.cityName}&image_type=photo&max_width=800`;
 
     const dispatch = useDispatch();
-    const citiesData = useSelector(state => state.citiesData)
-    const backImg = useSelector(state => state.backImg)
+    const citiesData = useSelector(state => state.reducer.citiesData)
+    const backImg = useSelector(state => state.reducer.backImg[props.cityName])
 
     useEffect(() => {
         dispatch(getCityData(url, props.cityName));
         dispatch(getBackImg(imgURL, props.cityName))
     }, [props.cityName])
 
-    const handleClick = (e) => {
-        dispatch(selectCity(e.target.dataset.cityname));
+    const handleClick = () => {
+        dispatch(selectCity(props.cityName));
         dispatch(showDetailInform(true))
     }
-    // 
-    
     return (
-        <div className={'slider__item'} id={props.id} data-cityname={props.cityName} style={{ backgroundImage: `url(${backImg[props.cityName]})` }} onClick={handleClick}>
+        <div className={'slider__item'} id={props.id} style={{ backgroundImage: `url(${backImg})` }} onClick={handleClick}>
             {citiesData[props.cityName] ?
                 <React.Fragment>
                     <div className="slider__text">
